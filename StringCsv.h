@@ -4,7 +4,6 @@
 
 #include <string>
 #include <algorithm>
-//#include <list>
 #include <sstream>
 #include <iostream>
 #include <vector>
@@ -30,6 +29,8 @@ namespace opmm {
 
 		std::string getStrItemStringSplitted(const size_t &pos);
 		void setStrItemStringSplitted(const size_t &pos, const std::string strValor);
+
+        std::string getStrItemStringSplittedRange(const size_t &pos1, const size_t &pos2);
 
 		unsigned short getStrCsvSize();
 

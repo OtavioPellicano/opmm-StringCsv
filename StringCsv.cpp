@@ -61,8 +61,28 @@ namespace opmm {
 
 	void StringCsv::setStrItemStringSplitted(const size_t & pos, const std::string strValor)
 	{
-		mVectorStrSplitted[pos] = strValor;
-	}
+        mVectorStrSplitted[pos] = strValor;
+    }
+
+    std::string StringCsv::getStrItemStringSplittedRange(const size_t &pos1, const size_t &pos2)
+    {
+        if ((pos1 > pos2) || pos2 >= StringCsv::getStrCsvSize())
+        {
+            return PARAMETRO_INEXISTENTE;
+        }
+
+        std::string strTemp("");
+        for(size_t i = pos1; i <= pos2; ++i)
+        {
+            if(i != pos2)
+                strTemp += mVectorStrSplitted[i] + ",";
+            else
+                strTemp += mVectorStrSplitted[i];
+        }
+
+        return strTemp;
+
+    }
 
 	unsigned short StringCsv::getStrCsvSize()
 	{
