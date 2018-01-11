@@ -1,2 +1,2 @@
 # opmm-StringCsv
-String class that work with csv files
+String class that works with csv files
