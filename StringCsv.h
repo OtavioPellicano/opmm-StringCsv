@@ -15,7 +15,8 @@ namespace opmm {
 	{
 	public:
 		StringCsv();
-		StringCsv(std::string str);
+        //StringCsv(std::string str);
+        StringCsv(const std::string &str, const std::string &separadorCsv = ";");
 
 		~StringCsv();
 
@@ -34,18 +35,23 @@ namespace opmm {
 
 		unsigned short getStrCsvSize();
 
-	private:
+        std::string getSeparadorCsv() const;
+        void setSeparadorCsv(const std::string &separadorCsv);
+
+    private:
         const std::string PARAMETRO_INEXISTENTE = "$PI$";
 
 
-		std::string mStr;
-		std::vector<std::string> mVectorStrSplitted;
+        std::string mStr;
+        std::vector<std::string> mVectorStrSplitted;
 		unsigned short mVectorStrSplittedSize;
-		void splitString();
 
-        void splitString2();
+        std::string mSeparadorCsv;
 
         void splitString3();
+
+
+
 
 	};
 
