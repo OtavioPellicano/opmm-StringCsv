@@ -8,10 +8,13 @@ namespace opmm {
 
 	}
 
-	StringCsv::StringCsv(std::string str)
-	{
-		setStr(str);
-	}
+
+    StringCsv::StringCsv(const std::string &str, const std::string &separadorCsv)
+    {
+        setSeparadorCsv(separadorCsv);
+        setStr(str);
+
+    }
 
 	StringCsv::~StringCsv()
 	{
@@ -87,117 +90,18 @@ namespace opmm {
 	unsigned short StringCsv::getStrCsvSize()
 	{
 		return mVectorStrSplittedSize;
-	}
-
-
-	void StringCsv::splitString()
-	{
-		std::string::iterator itStrBeginWord = mStr.begin();
-		for (std::string::iterator itStrEndWord = mStr.begin(); itStrEndWord != mStr.end(); ++itStrEndWord)
-		{
-			if (itStrEndWord != mStr.end())
-			{
-				if (*itStrEndWord == ',' || *itStrEndWord == ';')
-                {
-					mVectorStrSplitted.push_back(std::string(itStrBeginWord, itStrEndWord));
-					itStrBeginWord = itStrEndWord + 1;
-				}
-				else if (itStrEndWord == (mStr.end() - 1))
-				{
-					mVectorStrSplitted.push_back(std::string(itStrBeginWord, mStr.end()));
-				}
-			}
-        }
     }
 
-    void StringCsv::splitString2()
+    std::string StringCsv::getSeparadorCsv() const
     {
-
-        bool atualizouAspas = false;
-        std::string::iterator itStrBeginWord = mStr.begin();
-        for (std::string::iterator itStrEndWord = mStr.begin(); itStrEndWord < mStr.end(); ++itStrEndWord)
-        {
-            if (itStrEndWord != mStr.end())
-            {
-                if (*itStrEndWord == ',' || *itStrEndWord == ';')
-                {
-                    if (itStrEndWord + 1 != mStr.end())
-                    {
-                        if(*(itStrEndWord + 1) == '\"')
-                        {
-                            if(!(std::string(itStrBeginWord, itStrEndWord) == "\"\"" || std::string(itStrBeginWord, itStrEndWord) == "\""))
-                            {
-                                mVectorStrSplitted.push_back(std::string(itStrBeginWord, itStrEndWord));
-                            }
-                            else
-                            {
-                                mVectorStrSplitted.push_back("");
-                            }
-                            //mVectorStrSplitted.push_back(std::string(itStrBeginWord, itStrEndWord));
-                            itStrBeginWord = ++itStrEndWord + 1;//para não pegar a aspas
-                            while(*(++itStrEndWord) != '\"'){};
-                            atualizouAspas = true;
-                        }
-                    }
-
-                    if(atualizouAspas)
-                    {
-                        atualizouAspas = false;
-                        if(std::string(itStrBeginWord, itStrEndWord) != "")
-                        {
-                            while(itStrEndWord < itStrBeginWord)    //atualizar se o último valor for vazio
-                               ++itStrEndWord;
-
-                            if(!(std::string(itStrBeginWord, itStrEndWord) == "\"\"" || std::string(itStrBeginWord, itStrEndWord) == "\""))
-                            {
-                                mVectorStrSplitted.push_back(std::string(itStrBeginWord, itStrEndWord));
-                            }
-                            else
-                            {
-                                mVectorStrSplitted.push_back("");
-                            }
-
-                            if((itStrEndWord + 1) != mStr.end())
-                                ++itStrEndWord;
-
-                            itStrBeginWord = itStrEndWord + 1;
-                            if((itStrEndWord + 1) == mStr.end())
-                                itStrEndWord -= 1;
-
-                            continue;
-                        }
-                    }
-
-                    while(itStrEndWord < itStrBeginWord)        //atualizar se o último valor for vazio
-                        ++itStrEndWord;
-
-                    if(!(std::string(itStrBeginWord, itStrEndWord) == "\"\"" || std::string(itStrBeginWord, itStrEndWord) == "\""))
-                    {
-                        mVectorStrSplitted.push_back(std::string(itStrBeginWord, itStrEndWord));
-                    }
-                    else
-                    {
-                        mVectorStrSplitted.push_back("");
-                    }
-
-                    itStrBeginWord = itStrEndWord + 1;
-                    if((itStrEndWord + 1) == mStr.end())
-                        itStrEndWord -= 1;
-                }
-                else if (itStrEndWord == (mStr.end() - 1))
-                {
-                    if(!(std::string(itStrBeginWord, itStrEndWord) == "\"\"" || std::string(itStrBeginWord, itStrEndWord) == "\""))
-                    {
-                        mVectorStrSplitted.push_back(std::string(itStrBeginWord, itStrEndWord));
-                    }
-                    else
-                    {
-                        mVectorStrSplitted.push_back("");
-                    }
-                }
-            }
-        }
+        return mSeparadorCsv;
     }
+
+    void StringCsv::setSeparadorCsv(const std::string &separadorCsv)
+    {
+        mSeparadorCsv = separadorCsv;
+    }
+
 
     void StringCsv::splitString3()
     {
@@ -206,7 +110,8 @@ namespace opmm {
         {
             if (itStrEndWord != mStr.end())
             {
-                if (*itStrEndWord == ',' || *itStrEndWord == ';')
+                //if (*itStrEndWord == ',' || *itStrEndWord == ';')
+                if(*itStrEndWord == mSeparadorCsv[0])
                 {
                     mVectorStrSplitted.push_back(std::string(itStrBeginWord, itStrEndWord));
                     itStrBeginWord = itStrEndWord + 1;
@@ -228,5 +133,7 @@ namespace opmm {
             }
         }
     }
+
+
 
 }
