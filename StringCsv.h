@@ -38,6 +38,13 @@ namespace opmm {
         std::string getSeparadorCsv() const;
         void setSeparadorCsv(const std::string &separadorCsv);
 
+        std::string operator [](const size_t &pos);
+
+        size_t size();
+
+        bool empty();
+
+
     private:
         const std::string PARAMETRO_INEXISTENTE = "$PI$";
 

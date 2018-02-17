@@ -102,6 +102,31 @@ namespace opmm {
         mSeparadorCsv = separadorCsv;
     }
 
+    std::string StringCsv::operator [](const size_t &pos)
+    {
+        if(mVectorStrSplitted.empty())
+            return PARAMETRO_INEXISTENTE;
+
+        if (pos < StringCsv::size())
+            return mVectorStrSplitted[pos];
+        else
+            return PARAMETRO_INEXISTENTE;
+    }
+
+    size_t StringCsv::size()
+    {
+        return mVectorStrSplitted.size();
+    }
+
+    bool StringCsv::empty()
+    {
+        if(mVectorStrSplitted.empty())
+            return true;
+        else
+            return false;
+    }
+
+
 
     void StringCsv::splitString3()
     {
