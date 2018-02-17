@@ -1,4 +1,4 @@
-//#pragma once
+
 #ifndef STRINGCSV_H
 #define STRINGCSV_H
 
@@ -46,7 +46,7 @@ namespace opmm {
         std::vector<std::string> mVectorStrSplitted;
 		unsigned short mVectorStrSplittedSize;
 
-        std::string mSeparadorCsv;
+        std::string mSeparadorCsv = ";";
 
         void splitString3();
 
