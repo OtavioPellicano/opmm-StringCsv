@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <exception>
+#include <stdexcept>
 
 namespace opmm {
 
@@ -38,11 +39,19 @@ namespace opmm {
         std::string getSeparadorCsv() const;
         void setSeparadorCsv(const std::string &separadorCsv);
 
-        std::string operator [](const size_t &pos);
-
+        //Capacity
         size_t size();
-
         bool empty();
+
+
+        //Element access
+        std::string operator [](const size_t &pos);
+        std::string at(const size_t &pos) ;
+        std::string back();
+        std::string front();
+
+
+
 
 
     private:

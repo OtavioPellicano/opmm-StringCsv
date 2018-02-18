@@ -113,6 +113,33 @@ namespace opmm {
             return PARAMETRO_INEXISTENTE;
     }
 
+    std::string StringCsv::at(const size_t &pos)
+    {
+        try{
+            return mVectorStrSplitted.at(pos);
+        }catch (...)
+        {
+            throw;
+        }
+    }
+
+    std::string StringCsv::back()
+    {
+        if(!mVectorStrSplitted.empty())
+            return mVectorStrSplitted[StringCsv::size() - 1];
+        else
+            return PARAMETRO_INEXISTENTE;
+    }
+
+    std::string StringCsv::front()
+    {
+        if(!mVectorStrSplitted.empty())
+            return mVectorStrSplitted[0];
+        else
+            return PARAMETRO_INEXISTENTE;
+
+    }
+
     size_t StringCsv::size()
     {
         return mVectorStrSplitted.size();
