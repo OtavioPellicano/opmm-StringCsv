@@ -178,7 +178,7 @@ namespace opmm {
         return mVectorStrSplitted.max_size();
     }
 
-    void StringCsv::resize(size_t n) throw(std::bad_alloc, std::string)
+    void StringCsv::resize(const size_t &n) throw(std::bad_alloc, std::string)
     {
         try{
             mVectorStrSplitted.resize(n);
@@ -196,7 +196,7 @@ namespace opmm {
         return mVectorStrSplitted.capacity();
     }
 
-    void StringCsv::reserve(size_t n) throw(std::length_error, std::bad_alloc, std::string)
+    void StringCsv::reserve(const size_t &n) throw(std::length_error, std::bad_alloc, std::string)
     {
         try{
             mVectorStrSplitted.reserve(n);
@@ -216,17 +216,6 @@ namespace opmm {
     {
         mVectorStrSplitted.clear();
     }
-
-//    void StringCsv::getClear() const
-//    {
-//        return clear;
-//    }
-
-//    void StringCsv::setClear(const void &value)
-//    {
-//        clear = value;
-//    }
-
 
 
     void StringCsv::splitString3()

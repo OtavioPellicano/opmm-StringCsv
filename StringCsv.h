@@ -43,9 +43,9 @@ namespace opmm {
         size_t size();
         size_t length();
         size_t max_size();
-        void resize(size_t n) throw(std::bad_alloc, std::string);
+        void resize(const size_t &n) throw(std::bad_alloc, std::string);
         size_t capacity();
-        void reserve(size_t n) throw(std::length_error, std::bad_alloc, std::string);
+        void reserve(const size_t &n) throw(std::length_error, std::bad_alloc, std::string);
         void clear();
         bool empty();
         void shrink_to_fit() throw(std::bad_alloc, std::string);
@@ -59,11 +59,6 @@ namespace opmm {
         std::string front();
 
 
-
-
-
-//        void getClear() const;
-//        void setClear(const void &value);
 
     private:
         const std::string PARAMETRO_INEXISTENTE = "$PI$";
