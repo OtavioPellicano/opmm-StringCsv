@@ -113,13 +113,16 @@ namespace opmm {
             return PARAMETRO_INEXISTENTE;
     }
 
-    std::string StringCsv::at(const size_t &pos)
+    std::string StringCsv::at(const size_t &pos) throw(std::out_of_range, std::string)
     {
         try{
             return mVectorStrSplitted.at(pos);
-        }catch (...)
+        } catch (std::out_of_range)
         {
             throw;
+        } catch(...)
+        {
+            throw std::string ("unknown exception");
         }
     }
 
@@ -145,6 +148,11 @@ namespace opmm {
         return mVectorStrSplitted.size();
     }
 
+    size_t StringCsv::length()
+    {
+        return mVectorStrSplitted.size();
+    }
+
     bool StringCsv::empty()
     {
         if(mVectorStrSplitted.empty())
@@ -152,6 +160,72 @@ namespace opmm {
         else
             return false;
     }
+
+    void StringCsv::shrink_to_fit() throw(std::bad_alloc, std::string)
+    {
+        try {
+            mVectorStrSplitted.shrink_to_fit();
+        } catch (std::bad_alloc) {
+            throw;
+        } catch(...)
+        {
+            throw std::string ("unknown exception");
+        }
+    }
+
+    size_t StringCsv::max_size()
+    {
+        return mVectorStrSplitted.max_size();
+    }
+
+    void StringCsv::resize(size_t n) throw(std::bad_alloc, std::string)
+    {
+        try{
+            mVectorStrSplitted.resize(n);
+        } catch(std::bad_alloc)
+        {
+            throw;
+        } catch(...)
+        {
+            throw std::string ("unknown exception");
+        }
+    }
+
+    size_t StringCsv::capacity()
+    {
+        return mVectorStrSplitted.capacity();
+    }
+
+    void StringCsv::reserve(size_t n) throw(std::length_error, std::bad_alloc, std::string)
+    {
+        try{
+            mVectorStrSplitted.reserve(n);
+        } catch(std::length_error)
+        {
+            throw;
+        } catch(std::bad_alloc)
+        {
+            throw;
+        } catch(...)
+        {
+            throw std::string ("unknown exception");
+        }
+    }
+
+    void StringCsv::clear()
+    {
+        mVectorStrSplitted.clear();
+    }
+
+//    void StringCsv::getClear() const
+//    {
+//        return clear;
+//    }
+
+//    void StringCsv::setClear(const void &value)
+//    {
+//        clear = value;
+//    }
 
 
 
