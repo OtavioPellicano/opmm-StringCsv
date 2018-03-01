@@ -1,4 +1,3 @@
-
 #ifndef STRINGCSV_H
 #define STRINGCSV_H
 
@@ -12,70 +11,65 @@
 
 namespace opmm {
 
-	class StringCsv
-	{
-	public:
-		StringCsv();
-        //StringCsv(std::string str);
-        StringCsv(const std::string &str, const std::string &separadorCsv = ";");
+class StringCsv
+{
+public:
+    StringCsv();
 
-		~StringCsv();
+    StringCsv(const std::string &str, const std::string &separadorCsv = ";");
 
-		std::string str() const;
-		void setStr(const std::string &str);
+    ~StringCsv();
 
-		void printVectorStringSplitted();
-		void printVectorItemStringSplitted(const size_t &pos);
+    std::string str() const;
+    void setStr(const std::string &str);
 
-		std::vector<std::string> vectorStrSplitted() const;
+    void printVectorStringSplitted();
+    void printVectorItemStringSplitted(const size_t &pos);
 
-		std::string getStrItemStringSplitted(const size_t &pos);
-		void setStrItemStringSplitted(const size_t &pos, const std::string strValor);
+    std::vector<std::string> vectorStrSplitted() const;
 
-        std::string getStrItemStringSplittedRange(const size_t &pos1, const size_t &pos2);
+    std::string getStrItemStringSplitted(const size_t &pos);
+    void setStrItemStringSplitted(const size_t &pos, const std::string strValor);
 
-		unsigned short getStrCsvSize();
+    std::string getStrItemStringSplittedRange(const size_t &pos1, const size_t &pos2);
 
-        std::string getSeparadorCsv() const;
-        void setSeparadorCsv(const std::string &separadorCsv);
+    unsigned short getStrCsvSize();
 
-        //Capacity
-        size_t size();
-        size_t length();
-        size_t max_size();
-        void resize(const size_t &n) throw(std::bad_alloc, std::string);
-        size_t capacity();
-        void reserve(const size_t &n) throw(std::length_error, std::bad_alloc, std::string);
-        void clear();
-        bool empty();
-        void shrink_to_fit() throw(std::bad_alloc, std::string);
+    std::string getSeparadorCsv() const;
+    void setSeparadorCsv(const std::string &separadorCsv);
 
+    //Capacity
+    size_t size();
+    size_t length();
+    size_t max_size();
+    void resize(const size_t &n) throw(std::bad_alloc, std::string);
+    size_t capacity();
+    void reserve(const size_t &n) throw(std::length_error, std::bad_alloc, std::string);
+    void clear();
+    bool empty();
+    void shrink_to_fit() throw(std::bad_alloc, std::string);
 
+    //Element access
+    std::string operator [](const size_t &pos);
+    std::string at(const size_t &pos) throw(std::out_of_range, std::string);
+    std::string back();
+    std::string front();
 
-        //Element access
-        std::string operator [](const size_t &pos);
-        std::string at(const size_t &pos) throw(std::out_of_range, std::string);
-        std::string back();
-        std::string front();
+    //Operations
+    bool operator ==(const StringCsv &strCsv);
 
+private:
+    const std::string PARAMETRO_INEXISTENTE = "$PI$";
 
+    std::string mStr;
+    std::vector<std::string> mVectorStrSplitted;
+    unsigned short mVectorStrSplittedSize;
 
-    private:
-        const std::string PARAMETRO_INEXISTENTE = "$PI$";
+    std::string mSeparadorCsv = ";";
 
+    void splitString3();
 
-        std::string mStr;
-        std::vector<std::string> mVectorStrSplitted;
-		unsigned short mVectorStrSplittedSize;
-
-        std::string mSeparadorCsv = ";";
-
-        void splitString3();
-
-
-
-
-	};
+};
 
 
 }
