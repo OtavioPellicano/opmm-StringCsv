@@ -85,6 +85,7 @@ public:
     //StrCsv Operations
     bool operator ==(const StringCsv &strCsv);
     size_t find(const std::string &str, const size_t &pos = 0);
+    //StringCsv substr(const size_t &pos = 0, const size_t &len = StringCsv::npos) const throw(std::out_of_range);
 
 
 

@@ -226,6 +226,34 @@ size_t StringCsv::find(const std::string &str, const size_t &pos)
     return this->npos;
 }
 
+//Não está funcionando!
+//Tenho que avaliar o porquê
+//StringCsv StringCsv::substr(const size_t &pos, const size_t &len) const throw(std::out_of_range)
+//{
+
+//    if(pos >= this->mVectorStrSplitted.size())
+//    {
+//        throw std::out_of_range("substr");
+//    }
+
+//    std::string str = "";
+//    for(size_t i = pos; i < this->mVectorStrSplitted.size() && i < len; ++i)
+//    {
+//        if(i < (this->mVectorStrSplitted.size() - 1) &&
+//                i < (len - 1))
+//        {
+//            str += str + this->mVectorStrSplitted[i] + this->mSeparadorCsv;
+//        }
+//        else
+//        {
+//            str += str + this->mVectorStrSplitted[i];
+//        }
+//    }
+
+//    return StringCsv(str, this->mSeparadorCsv);
+
+//}
+
 
 size_t StringCsv::size()
 {
