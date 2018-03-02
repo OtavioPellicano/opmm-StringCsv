@@ -43,6 +43,10 @@ public:
     std::string getSeparadorCsv() const;
     void setSeparadorCsv(const std::string &separadorCsv);
 
+    //Reimplementacoes/////////
+    std::string csvDelimiter() const;
+    void setCsvDelimiter(const std::string &value);
+
     //Capacity
     size_t size();
     size_t length();
@@ -83,6 +87,7 @@ private:
 };
 
 //Non-member function overloads
+StringCsv operator +(const StringCsv &lhs, const StringCsv &rhs);
 std::ostream& operator<<(std::ostream &os, const StringCsv &strCsv);
 
 }

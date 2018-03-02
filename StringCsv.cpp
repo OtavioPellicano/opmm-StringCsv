@@ -100,6 +100,16 @@ void StringCsv::setSeparadorCsv(const std::string &separadorCsv)
     mSeparadorCsv = separadorCsv;
 }
 
+std::string StringCsv::csvDelimiter() const
+{
+    return this->mSeparadorCsv;
+}
+
+void StringCsv::setCsvDelimiter(const std::string &value)
+{
+    this->mSeparadorCsv = value;
+}
+
 std::string StringCsv::operator [](const size_t &pos)
 {
     if(mVectorStrSplitted.empty())
@@ -321,6 +331,13 @@ std::ostream &operator<<(std::ostream &os, const StringCsv &strCsv)
         }
     }
     return os;
+}
+
+StringCsv operator +(const StringCsv &lhs, const StringCsv &rhs)
+{
+    StringCsv strCsv(lhs.str(), lhs.csvDelimiter());
+    strCsv += rhs;
+    return strCsv;
 }
 
 
