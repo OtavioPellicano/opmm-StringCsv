@@ -80,7 +80,7 @@ public:
     //Modifiers
     StringCsv &operator +=(const StringCsv &strCsv);
     StringCsv &operator +=(const std::string &str);
-    StringCsv &operator +(const std::string &str);
+    StringCsv operator +(const std::string &str);
 
     //StrCsv Operations
     bool operator ==(const StringCsv &strCsv);

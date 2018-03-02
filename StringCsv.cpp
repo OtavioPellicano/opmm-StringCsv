@@ -187,10 +187,10 @@ StringCsv &StringCsv::operator =(const std::string &str)
     return *this;
 }
 
-StringCsv &StringCsv::operator +(const std::string &str)
+StringCsv StringCsv::operator +(const std::string &str)
 {
-    this->setStr(this->mStr + this->mSeparadorCsv + str);
-    return *this;
+    StringCsv strCsv(this->mStr + this->mSeparadorCsv + str, mSeparadorCsv);
+    return strCsv;
 }
 
 
