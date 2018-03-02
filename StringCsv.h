@@ -10,13 +10,19 @@
 #include <exception>
 #include <stdexcept>
 
+
 namespace opmm {
+
 
 class StringCsv
 {
-    //Friends
+//Friends
 public:
     friend std::ostream& operator<<(std::ostream &os, const StringCsv &strCsv);
+
+//static const
+public:
+    static const size_t npos = -1;
 
 public:
     StringCsv();
@@ -47,6 +53,10 @@ public:
     std::string csvDelimiter() const;
     void setCsvDelimiter(const std::string &value);
 
+
+    //Member functions
+    StringCsv &operator =(const std::string &str);
+
     //Capacity
     size_t size();
     size_t length();
@@ -58,6 +68,9 @@ public:
     bool empty();
     void shrink_to_fit() throw(std::bad_alloc, std::string);
 
+    //iterator
+
+
     //Element access
     std::string operator [](const size_t &pos);
     std::string at(const size_t &pos) throw(std::out_of_range, std::string);
@@ -67,11 +80,12 @@ public:
     //Modifiers
     StringCsv &operator +=(const StringCsv &strCsv);
     StringCsv &operator +=(const std::string &str);
-    StringCsv &operator =(const std::string &str);
     StringCsv &operator +(const std::string &str);
 
-    //Operations
+    //StrCsv Operations
     bool operator ==(const StringCsv &strCsv);
+    size_t find(const std::string &str, const size_t &pos = 0);
+
 
 
 private:

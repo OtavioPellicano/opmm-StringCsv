@@ -212,6 +212,21 @@ bool StringCsv::operator ==(const StringCsv &strCsv)
     return true;
 }
 
+size_t StringCsv::find(const std::string &str, const size_t &pos)
+{
+
+    for(size_t i = pos; i < mVectorStrSplitted.size(); ++i)
+    {
+        if(str == mVectorStrSplitted[i])
+        {
+            return i;
+        }
+    }
+
+    return this->npos;
+}
+
+
 size_t StringCsv::size()
 {
     return mVectorStrSplitted.size();
@@ -241,6 +256,7 @@ void StringCsv::shrink_to_fit() throw(std::bad_alloc, std::string)
         throw std::string ("unknown exception");
     }
 }
+
 
 size_t StringCsv::max_size()
 {
