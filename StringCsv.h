@@ -68,6 +68,7 @@ public:
     StringCsv &operator +=(const StringCsv &strCsv);
     StringCsv &operator +=(const std::string &str);
     StringCsv &operator =(const std::string &str);
+    StringCsv &operator +(const std::string &str);
 
     //Operations
     bool operator ==(const StringCsv &strCsv);
@@ -88,6 +89,7 @@ private:
 
 //Non-member function overloads
 StringCsv operator +(const StringCsv &lhs, const StringCsv &rhs);
+StringCsv operator +(const std::string &str, const StringCsv &rhs);
 std::ostream& operator<<(std::ostream &os, const StringCsv &strCsv);
 
 }

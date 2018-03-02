@@ -187,6 +187,12 @@ StringCsv &StringCsv::operator =(const std::string &str)
     return *this;
 }
 
+StringCsv &StringCsv::operator +(const std::string &str)
+{
+    this->setStr(this->mStr + this->mSeparadorCsv + str);
+    return *this;
+}
+
 
 bool StringCsv::operator ==(const StringCsv &strCsv)
 {
@@ -336,6 +342,13 @@ std::ostream &operator<<(std::ostream &os, const StringCsv &strCsv)
 StringCsv operator +(const StringCsv &lhs, const StringCsv &rhs)
 {
     StringCsv strCsv(lhs.str(), lhs.csvDelimiter());
+    strCsv += rhs;
+    return strCsv;
+}
+
+StringCsv operator +(const std::string &str, const StringCsv &rhs)
+{
+    StringCsv strCsv(str, rhs.csvDelimiter());
     strCsv += rhs;
     return strCsv;
 }
