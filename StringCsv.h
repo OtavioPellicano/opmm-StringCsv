@@ -57,9 +57,11 @@ public:
 
     //Modifiers
     StringCsv &operator +=(const StringCsv &strCsv);
+    StringCsv &operator +=(const std::string &str);
 
     //Operations
     bool operator ==(const StringCsv &strCsv);
+
 
 private:
     const std::string PARAMETRO_INEXISTENTE = "$PI$";

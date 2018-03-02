@@ -160,6 +160,17 @@ StringCsv &StringCsv::operator +=(const StringCsv &strCsv)
 
 }
 
+StringCsv &StringCsv::operator +=(const std::string &str)
+{
+    try {
+        this->mVectorStrSplitted.push_back(str);
+    } catch (...) {
+        throw;
+    }
+
+    return *this;
+}
+
 bool StringCsv::operator ==(const StringCsv &strCsv)
 {
     if (this->mVectorStrSplitted.size() != strCsv.mVectorStrSplitted.size())
