@@ -2,6 +2,7 @@
 #define STRINGCSV_H
 
 #include <string>
+#include <iostream>
 #include <algorithm>
 #include <sstream>
 #include <iostream>
@@ -13,6 +14,10 @@ namespace opmm {
 
 class StringCsv
 {
+    //Friends
+public:
+    friend std::ostream& operator<<(std::ostream &os, const StringCsv &strCsv);
+
 public:
     StringCsv();
 
@@ -76,6 +81,8 @@ private:
 
 };
 
+//Non-member function overloads
+std::ostream& operator<<(std::ostream &os, const StringCsv &strCsv);
 
 }
 

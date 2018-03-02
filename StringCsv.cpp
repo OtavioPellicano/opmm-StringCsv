@@ -171,6 +171,7 @@ StringCsv &StringCsv::operator +=(const std::string &str)
     return *this;
 }
 
+
 bool StringCsv::operator ==(const StringCsv &strCsv)
 {
     if (this->mVectorStrSplitted.size() != strCsv.mVectorStrSplitted.size())
@@ -293,6 +294,27 @@ void StringCsv::splitString3()
             }
         }
     }
+}
+
+std::ostream &operator<<(std::ostream &os, const StringCsv &strCsv)
+{
+    for(std::vector<std::string>::const_iterator itVec = strCsv.mVectorStrSplitted.begin();
+        itVec != strCsv.mVectorStrSplitted.end(); ++itVec)
+    {
+        try {
+            if(itVec != strCsv.mVectorStrSplitted.end() - 1)
+            {
+                os << *itVec << strCsv.mSeparadorCsv;
+            }
+            else
+            {
+                os << *itVec;
+            }
+        } catch (...) {
+            throw;
+        }
+    }
+    return os;
 }
 
 
