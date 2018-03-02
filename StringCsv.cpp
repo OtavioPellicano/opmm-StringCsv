@@ -171,6 +171,12 @@ StringCsv &StringCsv::operator +=(const std::string &str)
     return *this;
 }
 
+StringCsv &StringCsv::operator =(const std::string &str)
+{
+    this->setStr(str);
+    return *this;
+}
+
 
 bool StringCsv::operator ==(const StringCsv &strCsv)
 {
