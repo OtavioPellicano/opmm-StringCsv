@@ -141,6 +141,25 @@ std::string StringCsv::front()
 
 }
 
+StringCsv &StringCsv::operator +=(const StringCsv &strCsv)
+{
+    size_t pos = this->vectorStrSplitted().size();
+    try {
+        this->mVectorStrSplitted.resize(this->mVectorStrSplitted.size() + strCsv.mVectorStrSplitted.size());
+    } catch (...) {
+        throw;
+    }
+
+    for(std::vector<std::string>::const_iterator itVec = strCsv.mVectorStrSplitted.begin();
+        itVec != strCsv.mVectorStrSplitted.end(); ++itVec)
+    {
+        this->mVectorStrSplitted[pos++] = *itVec;
+    }
+
+    return *this;
+
+}
+
 bool StringCsv::operator ==(const StringCsv &strCsv)
 {
     if (this->mVectorStrSplitted.size() != strCsv.mVectorStrSplitted.size())

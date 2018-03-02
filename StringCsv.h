@@ -55,6 +55,9 @@ public:
     std::string back();
     std::string front();
 
+    //Modifiers
+    StringCsv &operator +=(const StringCsv &strCsv);
+
     //Operations
     bool operator ==(const StringCsv &strCsv);
 
