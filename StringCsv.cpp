@@ -291,11 +291,11 @@ size_t StringCsv::max_size()
     return mVectorStrSplitted.max_size();
 }
 
-void StringCsv::resize(const size_t &n) throw(std::bad_alloc, std::string)
+void StringCsv::resize(const size_t &n) throw(std::exception, std::string)
 {
     try{
         mVectorStrSplitted.resize(n);
-    } catch(std::bad_alloc)
+    } catch(std::exception)
     {
         throw;
     } catch(...)
