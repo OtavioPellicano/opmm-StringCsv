@@ -72,7 +72,7 @@ public:
 
 
     //Element access
-    std::string operator [](const size_t &pos);
+    std::string& operator [](const size_t &pos);
     std::string at(const size_t &pos) throw(std::out_of_range, std::string);
     std::string back();
     std::string front();
@@ -86,8 +86,6 @@ public:
     bool operator ==(const StringCsv &strCsv);
     size_t find(const std::string &str, const size_t &pos = 0);
     //StringCsv substr(const size_t &pos = 0, const size_t &len = StringCsv::npos) const throw(std::out_of_range);
-
-
 
 private:
     const std::string PARAMETRO_INEXISTENTE = "$PI$";

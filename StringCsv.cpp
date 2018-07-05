@@ -110,15 +110,9 @@ void StringCsv::setCsvDelimiter(const std::string &value)
     this->mSeparadorCsv = value;
 }
 
-std::string StringCsv::operator [](const size_t &pos)
+std::string &StringCsv::operator [](const size_t &pos)
 {
-    if(mVectorStrSplitted.empty())
-        return PARAMETRO_INEXISTENTE;
-
-    if (pos < StringCsv::size())
-        return mVectorStrSplitted[pos];
-    else
-        return PARAMETRO_INEXISTENTE;
+    return mVectorStrSplitted[pos];
 }
 
 std::string StringCsv::at(const size_t &pos) throw(std::out_of_range, std::string)
@@ -333,33 +327,21 @@ void StringCsv::clear()
 
 void StringCsv::splitString3()
 {
-    std::string::iterator itStrBeginWord = mStr.begin();
-    for (std::string::iterator itStrEndWord = mStr.begin(); itStrEndWord < mStr.end(); ++itStrEndWord)
+
+    if(mStr.empty())
+        return;
+
+    auto itFirst = mStr.begin();
+    std::string::iterator itSecond;
+    mVectorStrSplitted.reserve(std::count(mStr.begin(), mStr.end(),csvDelimiter()[0]) + 1);
+    while((itSecond = std::find(itFirst, mStr.end(), csvDelimiter()[0])) != mStr.end())
     {
-        if (itStrEndWord != mStr.end())
-        {
-            //if (*itStrEndWord == ',' || *itStrEndWord == ';')
-            if(*itStrEndWord == mSeparadorCsv[0])
-            {
-                mVectorStrSplitted.push_back(std::string(itStrBeginWord, itStrEndWord));
-                itStrBeginWord = itStrEndWord + 1;
-                if(*itStrBeginWord  == '\"')
-                {
-                    ++itStrEndWord;
-                    while(*(++itStrEndWord) != '\"');
-                    if(itStrEndWord == (mStr.end() - 1))
-                    {
-                        --itStrEndWord;
-                        itStrBeginWord = itStrEndWord;
-                    }
-                }
-            }
-            else if (itStrEndWord == (mStr.end() - 1))
-            {
-                mVectorStrSplitted.push_back(std::string(itStrBeginWord, mStr.end()));
-            }
-        }
+        mVectorStrSplitted.push_back(std::string(itFirst, itSecond));
+
+        itFirst = itSecond + 1;
     }
+    mVectorStrSplitted.push_back(std::string(itFirst, itSecond));
+
 }
 
 std::ostream &operator<<(std::ostream &os, const StringCsv &strCsv)
